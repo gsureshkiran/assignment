@@ -5,9 +5,11 @@ metadata:
 spec:
   selector:
     app: enhanced-devops-app
-  type: NodePort
   ports:
     - protocol: TCP
-      port: 80
+      port: 5000
       targetPort: 5000
-      nodePort: 30080
+  type: ClusterIP
+
+
+
