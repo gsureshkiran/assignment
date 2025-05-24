@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: enhanced-devops-app
-        image: <your-dockerhub-username>/enhanced-devops-app:latest
+        image: sureshkiran/assignment:v3
         ports:
         - containerPort: 5000
