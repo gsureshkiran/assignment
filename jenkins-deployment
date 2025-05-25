@@ -1,0 +1,20 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('checkout'){
+            steps{
+                git branch: 'main', url: 'https://github.com/gsureshkiran/assignment.git'
+            }
+        }
+        stage('eks-deploy'){
+            steps{
+                withKubeConfig(caCertificate: '', clusterName: ' my-eks-cluster', contextName: '', credentialsId: 'eks', namespace: 'default', restrictKubeConfigAccess: false, serverUrl: 'https://55AF74E43327B7E6771CC06FCAE6B6BD.gr7.ap-south-1.eks.amazonaws.com') {
+                 sh 'kubectl apply -f deployment.yaml'
+                 sleep time: 10, unit: 'SECONDS'
+                 sh 'kubectl get pods'
+               }
+            }
+         }
+    }
+}
