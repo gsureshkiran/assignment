@@ -8,17 +8,21 @@ This is an enhanced Python Flask application for DevOps automation testing.
 - `/echo` POST endpoint that echoes received JSON
 For this project i use AWS+Terraform+Ansible+jenkins
 first deploy the jenkins and Ansible server and integrate the both tools using jenkins master slave configurations
+ 
+After that configured the softwares such as git,awscli,eksctl,kubectl,docker
+   next create the eks cluster using jenkins+terraform
+ 
+Next I create docker image, scan the docker image using trivy and push to remote repo using jenkins pipeline
+   
+ 
+Next deploy the image into eks cluster using jenkins pipeline
+ Next check the health of the application using shell script
+ 
 
-## How to Run
 
-### Docker
-```bash
-docker build -t enhanced-devops-app .
-docker run -p 5000:5000 enhanced-devops-app
-```
+Application output
 
-### Kubernetes
-```bash
-kubectl apply -f deployment.yaml
-kubectl apply -f service.yaml
-```
+
+Lambda+S3event integarion output
+
+
