@@ -49,6 +49,9 @@ Application output
 
 
 ![image](https://github.com/user-attachments/assets/a28b6528-2804-45da-96b7-d3f7f8340f94)
+configure the helm chart in eks
+
+<img width="920" alt="image" src="https://github.com/user-attachments/assets/df5eaf9e-9c12-4cc4-8923-2e539c999adf" />
 
 Lambda+S3event integarion output
 
