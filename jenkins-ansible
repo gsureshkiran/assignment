@@ -1,0 +1,17 @@
+pipeline {
+    agent { label 'ansible' }
+
+    stages {
+        stage('checkout'){
+            steps{
+                git branch: 'main', url: 'https://github.com/gsureshkiran/assignment.git'
+            }
+        }
+        stage('install_softwares') {
+            steps {
+                echo 'install configurations using ansible'
+                sh 'ansible-playbook playbook.yaml'
+            }
+        }
+    }
+}
