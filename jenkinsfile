@@ -1,0 +1,32 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/gsureshkiran/assignment.git'
+            }
+        }
+        stage('image_build'){
+            steps{
+               sh 'docker build -t sureshkiran/assignment:v4 .'
+            }
+        }
+        stage('trivy-scan'){
+            steps{
+                sh 'trivy image sureshkiran/assignment:v4'
+            }
+        }
+        stage('image-push'){
+            steps{
+                script{
+                    withCredentials([string(credentialsId: 'dockerhub', variable: 'dockerhub')]) {
+                    sh 'docker login -u sureshkiran -p ${dockerhub}'
+                    }
+                    sh 'docker push sureshkiran/assignment:v4'
+            }
+        }
+        
+      }
+    }  
+}
