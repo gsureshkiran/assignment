@@ -6,6 +6,8 @@ This is an enhanced Python Flask application for DevOps automation testing.
 - `/` Welcome route
 - `/health` Health check endpoint
 - `/echo` POST endpoint that echoes received JSON
+For this project i use AWS+Terraform+Ansible+jenkins
+first deploy the jenkins and Ansible server and integrate the both tools using jenkins master slave configurations
 
 ## How to Run
 
