@@ -1,0 +1,48 @@
+pipeline {
+  agent any
+
+  environment {
+    TF_WORKING_DIR = 'terraform'  // Path to your Terraform code
+    AWS_REGION = 'ap-south-1'      // Optional: For AWS-specific use
+  }
+
+  stages {
+    stage('Checkout') {
+      steps {
+          git branch: 'main', url: 'https://github.com/gsureshkiran/assignment.git'
+
+        
+      }
+    }
+
+    stage('Terraform Init') {
+      steps {
+        dir("${env.TF_WORKING_DIR}") {
+          sh 'terraform init'
+        }
+      }
+    }
+
+    stage('Terraform Plan') {
+      steps {
+        dir("${env.TF_WORKING_DIR}") {
+          sh 'terraform plan -out=tfplan'
+        }
+      }
+    }
+
+    stage('Terraform Apply') {
+      steps {
+        dir("${env.TF_WORKING_DIR}") {
+          sh 'terraform apply -auto-approve tfplan'
+        }
+      }
+    }
+  }
+
+  post {
+    failure {
+      echo "Terraform failed."
+    }
+  }
+}
